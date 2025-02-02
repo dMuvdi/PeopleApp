@@ -4,7 +4,7 @@ import '../../../src/models/user.dart';
 
 class HomePageController extends GetxController {
   RxList<User> userList = <User>[].obs;
-   RxList<User> filteredUserList = <User>[].obs;
+  RxList<User> filteredUserList = <User>[].obs;
   RxString searchTerm = ''.obs;
 
   @override

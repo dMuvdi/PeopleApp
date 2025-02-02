@@ -30,7 +30,7 @@ class User {
   Map<String, dynamic> toJson() => {
     'id': id,
     'name': name,
-    'phone': phone,
+    'phone': phoneExt == 'Sin extensión' ? phone : '$phone x$phoneExt',
     'email': email,
     'isShowing':true
   };

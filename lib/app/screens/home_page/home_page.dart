@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:people_app/app/screens/home_page/home_page_controller.dart';
 
+import 'widgets/person_card.dart';
+
 class HomePage extends GetView<HomePageController> {
   const HomePage({super.key});
 
@@ -56,122 +58,36 @@ class HomePage extends GetView<HomePageController> {
                   height: Get.height * 0.75,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(40)),
-                  child: controller.filteredUserList.isEmpty ? const Center(child: Text("No se encuentran usuarios con a busqueda realizada"),) : ListView.builder(
-                    itemCount: controller.filteredUserList.length,
-                    padding: const EdgeInsets.only(top: 15.0),
-                    itemBuilder: (context, index) {
-                      return Card(
-                        color: Colors.white,
-                        surfaceTintColor: Colors.white,
-                        shadowColor: Colors.black,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ListTile(
-                              title: Text(
-                                controller.filteredUserList[index].name,
-                                style: const TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              subtitle: Text(
-                                controller.filteredUserList[index].email,
-                                style: const TextStyle(fontSize: 15.0),
-                              ),
-                              leading: CircleAvatar(
-                                backgroundColor: Colors.green,
-                                child: Center(
-                                  child: Text(
-                                    controller.filteredUserList[index].name[0]
-                                        .toUpperCase(),
-                                    style: const TextStyle(
-                                        fontSize: 15, color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Divider(
-                              color: Colors.grey.shade300,
-                              height: 0.5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0,
-                                  top: 10.0,
-                                  bottom: 10.0,
-                                  right: 15.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(Icons.phone),
-                                          const SizedBox(
-                                            width: 7.0,
-                                          ),
-                                          Text(controller
-                                              .filteredUserList[index].phone),
-                                        ],
-                                      ),
-                                      Text(
-                                          "ext. ${controller.filteredUserList[index].phoneExt}")
-                                    ],
-                                  ),
-                                  ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.brown),
-                                        overlayColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.brown.shade300),
-                                        padding: MaterialStateProperty.all<
-                                                EdgeInsets>(
-                                            const EdgeInsets.symmetric(
-                                                vertical: 12, horizontal: 10)),
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                        ),
-                                        elevation:
-                                            MaterialStateProperty.all<double>(
-                                                3),
-                                      ),
-                                      onPressed: () {},
-                                      child: const Row(
-                                        children: [
-                                          Text(
-                                            "Ver publicaciones",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          SizedBox(
-                                            width: 5.0,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_forward_ios,
-                                            size: 20,
-                                            color: Colors.white,
-                                          )
-                                        ],
-                                      ))
-                                ],
-                              ),
-                            )
-                          ],
+                  child: controller.filteredUserList.isEmpty
+                      ? const Center(
+                          child: Text(
+                              "No se encuentran usuarios con a busqueda realizada"),
+                        )
+                      : ListView.builder(
+                          itemCount: controller.filteredUserList.length,
+                          padding: const EdgeInsets.only(top: 15.0),
+                          itemBuilder: (context, index) {
+                            return PersonCard(
+                              name: controller.filteredUserList[index].name,
+                              email: controller.filteredUserList[index].email,
+                              phone: controller.filteredUserList[index].phone,
+                              phoneExt:
+                                  controller.filteredUserList[index].phoneExt,
+                              onPressedSeePosts: (){
+                                Get.toNamed(
+                                  '/people_detail',
+                                  arguments: {
+                                    'name':controller.filteredUserList[index].name,
+                                    'email':controller.filteredUserList[index].email,
+                                    'phone':controller.filteredUserList[index].phone,
+                                    'phone_ext':controller.filteredUserList[index].phoneExt,
+                                    'user_id':controller.filteredUserList[index].id
+                                  }
+                                );
+                              },
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
                 )),
           ],
         ),

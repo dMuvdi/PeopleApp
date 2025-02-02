@@ -25,7 +25,7 @@ class SplashController extends GetxController {
   Future<bool> _checkFirstLaunch() async {
     try {
       final value = await storage.read(key: 'first_time');
-      if (value != null) {
+      if (value != null || value!.isEmpty) {
         return false; // Not the first time
       } else {
         await storage.write(key: 'first_time', value: 'false'); // Mark as not first time for future launches

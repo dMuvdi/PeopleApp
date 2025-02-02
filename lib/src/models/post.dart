@@ -10,13 +10,13 @@ class Post {
     return Post(
       id: json['id'],
       title: json['title'],
-      content: json['content'],
+      content: json['body'],
     );
   }
 
   Map<String, dynamic> toJson() => {
     'id': id,
     'title': title,
-    'content': content,
+    'body': content,
   };
 }
