@@ -26,7 +26,7 @@ The users and posts are obtained from a Rest type web services that are already 
 3. **Navigate to the Project Directory:**
    * Use the cd command to navigate to the cloned project directory:
    ```bash
-   cd twn_square
+   cd people_app
    ````
 
 4. **Get Dependencies:**
