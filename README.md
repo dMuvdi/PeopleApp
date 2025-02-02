@@ -50,4 +50,4 @@ The users and posts are obtained from a Rest type web services that are already 
 
 ## UI Proposal
 
-![alt text](https://github.com/dMuvdi/PeopleApp/ui_proposal.png?raw=true)
+![UI Proposal](ui_proposal.png)
