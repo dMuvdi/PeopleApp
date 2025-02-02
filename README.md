@@ -20,7 +20,7 @@ The users and posts are obtained from a Rest type web services that are already 
 
 2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/dMuvdi/TWNSQUARE.git
+   git clone https://github.com/dMuvdi/PeopleApp.git
    ````
 
 3. **Navigate to the Project Directory:**
